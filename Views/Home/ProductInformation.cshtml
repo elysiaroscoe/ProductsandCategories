@@ -1,0 +1,33 @@
+@using ProductsandCategories.Models
+@model ProductInformationVM
+
+
+<h1>@Model.ThisProduct.ProductName</h1>
+
+<div>
+    <h4>Categories:</h4>
+    @foreach (Association a in Model.ThisProduct.Associations)
+    {
+        <p>@a.Category.CategoryName</p>
+    }
+</div>
+
+<div>
+    <h4>Add Category:</h4>
+        <form asp-action="assigncategory">
+            <div>
+                <span asp-validation-for = "Connection.CategoryId"></span>
+                <label asp-for="Connection.CategoryId"></label>
+                <select asp-for="Connection.CategoryId">
+                    @foreach (Category c in Model.UnassignedCategories)
+                    {
+                        <option value="@c.CategoryId">@c.CategoryName</option>
+                    }
+                </select>
+            </div>
+            <input asp-for ="Connection.ProductId" type="hidden" value="@Model.ThisProduct.ProductId">
+            <div>
+                <input type="submit" value="Add Category to Product">
+            </div>
+        </form>
+</div>

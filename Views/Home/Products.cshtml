@@ -1,0 +1,39 @@
+@using ProductsandCategories.Models
+@model ProductViewModel
+
+
+<h1>Products | <a href="http://localhost:5000/categories">Categories</a></h1>
+
+@* Form Div  *@
+<div>
+    <h1>New Product</h1>
+    <form asp-action="CreateProduct">
+        <div>
+            <span asp-validation-for = "ThisProduct.ProductName"></span>
+            <label asp-for="ThisProduct.ProductName"></label>
+            <input asp-for="ThisProduct.ProductName">
+        </div>
+        <div>
+            <span asp-validation-for = "ThisProduct.Description"></span>
+            <label asp-for="ThisProduct.Description"></label>
+            <input asp-for="ThisProduct.Description">
+        </div>
+        <div>
+            <span asp-validation-for = "ThisProduct.Price"></span>
+            <label asp-for="ThisProduct.Price"></label>
+            <input asp-for="ThisProduct.Price">
+        </div>
+        <div>
+            <input type="submit" value="Create Product">
+        </div>
+    </form>
+</div>
+
+@* List of product links  *@
+<div>
+    <h1>Existing Products</h1>
+    @foreach (Product p in Model.AllProducts)
+    {
+        <a href="http://localhost:5000/products/@p.ProductId">@p.ProductName</a>
+    }
+</div>

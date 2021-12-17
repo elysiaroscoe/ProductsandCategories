@@ -1,0 +1,29 @@
+@using ProductsandCategories.Models
+@model CategoryViewModel
+
+
+<h1><a href="http://localhost:5000/products">Products</a> | Categories</h1>
+
+@* Form Div  *@
+<div>
+    <h1>New Category</h1>
+    <form asp-action="CreateCategory">
+        <div>
+            <span asp-validation-for = "ThisCategory.CategoryName"></span>
+            <label asp-for="ThisCategory.CategoryName"></label>
+            <input asp-for="ThisCategory.CategoryName">
+        </div>
+        <div>
+            <input type="submit" value="Create Category">
+        </div>
+    </form>
+</div>
+
+@* List of product links  *@
+<div>
+    <h1>Existing Categories</h1>
+    @foreach (Category c in Model.AllCategories)
+    {
+        <a href="http://localhost:5000/categories/@c.CategoryId">@c.CategoryName</a>
+    }
+</div>
